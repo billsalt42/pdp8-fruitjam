@@ -1,0 +1,296 @@
+/ EAE EXERCISER - CHECKSUMS OF MODE A AND MODE B RESULTS
+XMQL=7421
+XMQA=7501
+XSCA=7441
+XSCL=7403
+XMUY=7405
+XDVI=7407
+XNMI=7411
+XSHL=7413
+XASR=7415
+XLSR=7417
+XSWAB=7431
+XSWBA=7447
+XACS=7403
+XDAD=7443
+XDST=7445
+XDPSZ=7451
+XDPIC=7573
+XDCM=7575
+XSAM=7457
+XSGT=6006
+XBSW=7002
+*20
+SEED,   1234
+SUM,    0
+TMP,    0
+TMP2,   0
+T1,     0
+T2,     0
+CNT,    0
+DIG,    0
+DBL,    0
+DBL1,   0
+*200
+START,  CLA CLL
+        XSWBA
+        DCA SUM
+        TAD (-1000
+        DCA CNT
+ALOOP,  JMS NEXT
+        TAD T1
+        XMQL
+        TAD T2
+        DCA MUYA
+        TAD T2
+        AND (7
+        XMUY
+MUYA,   0
+        JMS CAP
+        TAD T1
+        AND (7776
+        IAC
+        DCA DVIA
+        TAD T1
+        XMQL
+        TAD T2
+        AND (777
+        XDVI
+DVIA,   0
+        JMS CAP
+        TAD T2
+        XMQL
+        TAD T1
+        XNMI
+        JMS CAP
+        TAD T2
+        AND (37
+        DCA SHLA
+        TAD T2
+        XMQL
+        TAD T1
+        XSHL
+SHLA,   0
+        JMS CAP
+        TAD T2
+        AND (37
+        DCA ASRA
+        TAD T2
+        XMQL
+        TAD T1
+        XASR
+ASRA,   0
+        JMS CAP
+        TAD T2
+        AND (37
+        DCA LSRA
+        TAD T2
+        XMQL
+        TAD T1
+        XLSR
+LSRA,   0
+        JMS CAP
+        TAD T1
+        DCA SCLA
+        XSCL
+SCLA,   0
+        XSCA
+        JMS MIX
+        ISZ CNT
+        JMP ALOOP
+        TAD SUM
+        JMS POCT
+        JMP BSTART
+*1000
+BSTART, CLA CLL
+        DCA SUM
+        XSWAB
+        TAD (-1000
+        DCA CNT
+BLOOP,  JMS NEXT
+        TAD T1
+        XMQL
+        TAD T2
+        AND (17
+        XMUY
+        T2
+        JMS CAP
+        TAD T1
+        AND (7776
+        IAC
+        DCA TMP
+        TAD T1
+        XMQL
+        TAD T2
+        AND (1777
+        XDVI
+        TMP
+        JMS CAP
+        TAD T2
+        DCA DBL
+        TAD T1
+        DCA DBL1
+        TAD T1
+        XMQL
+        TAD T2
+        XDAD
+        DBL
+        JMS CAP
+        TAD T2
+        XMQL
+        TAD T1
+        XDST
+        DBL
+        CLA
+        TAD DBL
+        JMS MIX
+        TAD DBL1
+        JMS MIX
+        TAD T1
+        AND (7
+        XMQL
+        TAD T2
+        AND (3
+        XDPSZ
+        TAD (100
+        JMS MIX
+        TAD T2
+        XMQL
+        TAD T1
+        XDPIC
+        JMS CAP
+        TAD T2
+        XMQL
+        TAD T1
+        XDCM
+        JMS CAP
+        TAD T2
+        XMQL
+        TAD T1
+        XSAM
+        JMS CAP
+        JMS GT
+        TAD T1
+        XACS
+        XSCA
+        JMS MIX
+        JMP BMORE
+*1200
+BMORE,  TAD T2
+        AND (37
+        DCA BSHL
+        TAD T2
+        XMQL
+        TAD T1
+        XSHL
+BSHL,   0
+        JMS CAP
+        JMS GT
+        TAD T2
+        AND (37
+        DCA BASR
+        TAD T2
+        XMQL
+        TAD T1
+        XASR
+BASR,   0
+        JMS CAP
+        JMS GT
+        TAD T2
+        AND (37
+        DCA BLSR
+        TAD T2
+        XMQL
+        TAD T1
+        XLSR
+BLSR,   0
+        JMS CAP
+        JMS GT
+        TAD T2
+        XMQL
+        TAD T1
+        XNMI
+        JMS CAP
+        ISZ CNT
+        JMP BLOOP
+        XSWBA
+        TAD SUM
+        JMS POCT
+        JMP I (7600
+*400
+MIX,    0
+        DCA TMP
+        TAD SUM
+        CLL RAL
+        SZL
+        IAC
+        TAD TMP
+        DCA SUM
+        JMP I MIX
+CAP,    0
+        DCA TMP2
+        RAL
+        JMS MIX
+        TAD TMP2
+        JMS MIX
+        XMQA
+        JMS MIX
+        XSCA
+        JMS MIX
+        JMP I CAP
+GT,     0
+        CLA
+        XSGT
+        SKP
+        TAD (40
+        JMS MIX
+        JMP I GT
+NEXT,   0
+        JMS RAND
+        DCA T1
+        JMS RAND
+        DCA T2
+        JMP I NEXT
+RAND,   0
+        CLA CLL
+        TAD SEED
+        CLL RAL
+        CLL RAL
+        TAD SEED
+        TAD (3217
+        DCA SEED
+        TAD SEED
+        XBSW
+        TAD SEED
+        JMP I RAND
+*600
+POCT,   0
+        DCA TMP
+        TAD (-4
+        DCA DIG
+PLP,    CLA
+        TAD TMP
+        CLL RTL
+        RTL
+        AND (7
+        TAD (260
+        JMS TYPE
+        TAD TMP
+        CLL RAL
+        CLL RAL
+        CLL RAL
+        DCA TMP
+        ISZ DIG
+        JMP PLP
+        TAD (215
+        JMS TYPE
+        TAD (212
+        JMS TYPE
+        JMP I POCT
+TYPE,   0
+        TLS
+        TSF
+        JMP .-1
+        CLA
+        JMP I TYPE
+$
