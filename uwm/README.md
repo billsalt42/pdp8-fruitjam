@@ -86,3 +86,33 @@ make_uwm_disk.py  build_uwm.py + installs the library programs into the file sys
 tssfs.py          TSS/8 RF08 file-system reader, plus in-place file replace/rename
 binload.py        BIN-format tape reader
 ```
+
+What are the major feature differences between the UWM version and DEC version of TSS/8 that we put together?
+
+Ran 11 commands
+The two systems are much closer than I made them sound earlier. Both run DEC's TSS/8 monitor, share the same file system and program library, and take the same logins. The UWM version is DEC's monitor as reworked by Richard Bartlein at the University of Wisconsin–Milwaukee in 1974–76. The practical differences:
+
+Differences you'll notice
+
+Ctrl-B before LOGIN. UWM only accepts LOGIN if you press Ctrl-B first. It's a security fix: an idle program can't fake the login prompt and capture passwords.
+Message of the day. UWM runs a LOGIN program after each login, which prints a welcome message. We wrote that program for this build, since the UWM sources came without one. DEC just logs you in.
+Typing a program name runs it. If UWM doesn't recognise a command, it treats it as R name, so BASIC works like R BASIC. DEC gives an error.
+Extra UWM commands:
+SEGS shows free disk space.
+ODT loads a debugger.
+XOPEN opens a file for exclusive use.
+INHIBIT / REENABLE block TALK messages to your terminal.
+HALF / FULL set how your terminal echoes.
+Different sign-on banner. UWM shows UWM'S TSS-8/E.25 JOB 01 [0002] ON K00, and DEC shows TSS/8.24 JOB 01 [00,02] K01.
+Under the hood
+
+UWM's many bug fixes and changes to the scheduler, swapping and terminal buffering are the "extensively modified and corrected" part of its source header. You mostly won't see them, except that it should be more robust under load.
+UWM added supervisor calls, such as one that reports free disk space, and it can check that a program is privileged. Some library programs have to be marked privileged to read the monitor's tables. That's why I had to adjust SYSTAT, CAT and LOGOUT for it.
+UWM can use an RK05 or TD8E DECtape as the system device, and it has hooks for a billing system. This build doesn't use those options: it's set up with the same RF08 disk, console and four terminal lines as the DEC version.
+What's the same in our builds
+
+The library (BASIC, FOCAL, EDIT, FORTRAN, PAL-D, PIP, CAT, COPY) is DEC's in both, because the UWM sources didn't include one.
+To make DEC's programs run unchanged under UWM, I added DEC's WHO call to UWM. I also made UWM ignore unknown calls the way DEC does, instead of stopping the program.
+Both run the clock at 10 ticks per second (UWM originally used 20), use the same accounts, and accept the same 1974–84 date range.
+Many commands I listed earlier as UWM additions are also in DEC 8.24: TALK, BROADCAST, WHERE, KJOB, FORCE, VERSION, ON/OFFLINE and DUPLEX. I checked the DEC source and they're there, so the UWM README overstates the difference. I can correct it if you like.
+For everyday use, DEC 8.24 is the "standard" TSS/8. It's also the one checked to match SIMH exactly, since SIMH can't run UWM's monitor unmodified.
