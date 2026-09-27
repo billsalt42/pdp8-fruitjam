@@ -1,5 +1,10 @@
 # PDP-8/E emulator for the Adafruit Fruit Jam
 
+First of all, an admission.  There are some of the retro-computing community who strongly eschew
+the use of AI.  This work was produced as my first try at a project using Claude, so if that
+offends or otherwise turns you off, read no further.  This work was generated using AI.  For
+others, please read on and give this a try if you're interested.
+
 This turns an [Adafruit Fruit Jam](https://www.adafruit.com/product/6200) (RP2350B) into a
 PDP-8/E minicomputer. It runs **OS/8** from an RK05 cartridge-disk image on the microSD card, or
 the **TSS/8** time-sharing system with up to five users logged in at once. TSS/8 comes in two
